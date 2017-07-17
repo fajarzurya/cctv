@@ -29,11 +29,60 @@
 	   $this->db->where('ID',$id);
    	   $this->db->update('ITEM',$data); 
 	 }
-	 public function delete_item($id,$status)//edit
+	 public function delete_item($id)//delete
 	 {
-	   $this->db->query("UPDATE SUBDIT
-						   SET STATUS_= '".$status."'
-						   WHERE ID_SUBDIT=
+	   $this->db->query("DELETE FROM ITEM
+						   WHERE ID=
+						  ".$id); 
+	 }
+	 
+	 //---------------Customer----------------------
+	 public function customer()//select
+	 {
+	   return $this->db->query('SELECT * FROM CUSTOMER');
+	 }
+	 public function cust_id($id)//select
+	 {
+	   return $this->db->query("SELECT * FROM CUSTOMER WHERE ID = '".$id."'");
+	 }
+	 public function tambah_cust($data)//insert
+	 {
+   	   $this->db->insert('CUSTOMER',$data); 
+	 }
+	 public function edit_cust($id,$data)//edit
+	 {
+	   $this->db->where('ID',$id);
+   	   $this->db->update('CUSTOMER',$data); 
+	 }
+	 public function delete_cust($id)//delete
+	 {
+	   $this->db->query("DELETE FROM CUSTOMER
+						   WHERE ID=
+						  ".$id); 
+	 }
+	 
+	 //---------------Employee----------------------
+	 public function employee()//select
+	 {
+	   return $this->db->query('SELECT * FROM EMPLOYEE');
+	 }
+	 public function em_id($id)//select
+	 {
+	   return $this->db->query("SELECT * FROM EMPLOYEE WHERE ID = '".$id."'");
+	 }
+	 public function tambah_em($data)//insert
+	 {
+   	   $this->db->insert('EMPLOYEE',$data); 
+	 }
+	 public function edit_em($id,$data)//edit
+	 {
+	   $this->db->where('ID',$id);
+   	   $this->db->update('EMPLOYEE',$data); 
+	 }
+	 public function delete_em($id)//delete
+	 {
+	   $this->db->query("DELETE FROM EMPLOYEE
+						   WHERE ID=
 						  ".$id); 
 	 }
 	 //---------------dashboard---------------------

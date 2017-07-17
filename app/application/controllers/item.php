@@ -39,7 +39,7 @@
 			}
 			else{
 				$data['notif'] = '0';			
-		        $this->template->set('title', 'Detail Item Tahun '.$th);
+		        $this->template->set('title', 'Detail Item');
 		    	$this->template->load('template', 'item/detail_item',$data);
 				}
 
@@ -71,7 +71,7 @@
 				   
 				   
 				 $this->mastermodel->tambah_item($data);
-				 redirect('item/detail_item/'.$tahun[2]);
+				 redirect('item/detail_item/');
 				
 		    }
 			else{
@@ -113,7 +113,7 @@
 				   
 				   
 				 $this->mastermodel->edit_item($id,$data);
-				 redirect('item/detail_item/'.$tahun[2]);
+				 redirect('item/detail_item/');
 				
 		    }
 			else{
@@ -134,21 +134,23 @@
 		  $level = $this->session->userdata('level');
 		  $data['menu'] = $this->usermodel->get_menu_for_level($level);
 		  
-		  $this->load->library('form_validation');
-		  $this->form_validation->set_rules('tahun', 'tahun', 'trim|required');
-		  $this->form_validation->set_error_delimiters('<span style="color:#FF0000">','</span>');
+		  //$this->load->library('form_validation');
+		  //$this->form_validation->set_rules('tahun', 'tahun', 'trim|required');
+		  //$this->form_validation->set_error_delimiters('<span style="color:#FF0000">','</span>');
+		  $this->mastermodel->delete_item($id);
+		  redirect('item/detail_item/');
 		  
-		  if($this->form_validation->run() == TRUE){				
+		  /*if($this->form_validation->run() == TRUE){				
 		  
 				 $this->mastermodel->delete_item($id);
-				 redirect('item/detail_item/'.$tahun[2]);
+				 redirect('item/detail_item/');
 				
 		    }
 			else{
 				$this->template->set('title', 'Detail Item');
-				$this->template->load('template','item/delete_item', $data);
+				$this->template->load('template','item/detail_item', $data);
 				}
-				
+			*/	
 			//=====================================================================
 			
 	   }

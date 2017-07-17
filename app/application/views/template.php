@@ -5,8 +5,9 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<meta name="description" content="">
     <meta name="author" content="">
 
     <title><?php echo $title; ?></title>
@@ -20,8 +21,27 @@
     <script src="<?php echo base_url(); ?>assets/texteditor/lib/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/texteditor/src/bootstrap3-wysihtml5.js"></script>
     <script src="<?php echo base_url(); ?>assets/gantchart/js/jquery.fn.gantt.js"></script>
-
-    
+	<!-- Select2 -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/dist/css/select2.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+		   folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
+	<!-- iCheck -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/flat/blue.css">
+	<!-- Morris chart -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/morris/morris.css">
+	<!-- jvectormap -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datepicker/datepicker3.css">
+	<!-- Daterange picker -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
+	<!-- bootstrap wysihtml5 - text editor -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">    
     
     <!-- MetisMenu CSS -->
     <link href="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -41,14 +61,39 @@
     <!-- Morris Charts CSS -->
     <link href="<?php echo base_url(); ?>assets/bower_components/morrisjs/morris.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts
+    <link href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+	
+	<!-- Custom Fonts -->
+    <link href="<?php echo base_url(); ?>assets/bower_components/font-awesome-new/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	<!-- jQuery -->
 	<!-- datepicker-->
     <link type="text/css" href="<?php echo base_url(); ?>assets/datepicker/css/ui.all.css" rel="stylesheet" />
     <link type="text/css" href="<?php echo base_url(); ?>assets/datepicker/css/jquery-ui.theme.min.css" rel="stylesheet" />
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/datepicker/js/ui.datepicker.js"></script>
+	<!-- Select2 -->
+	<script src="<?php echo base_url(); ?>assets/plugins/select2/dist/js/select2.full.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/plugins/morris/morris.min.js"></script>
+	<!-- Sparkline -->
+	<script src="<?php echo base_url(); ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+	<!-- jvectormap -->
+	<script src="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+	<!-- jQuery Knob Chart -->
+	<script src="<?php echo base_url(); ?>assets/plugins/knob/jquery.knob.js"></script>
+	<!-- daterangepicker -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
+	<!-- datepicker -->
+	<script src="<?php echo base_url(); ?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+	<!-- Bootstrap WYSIHTML5 -->
+	<script src="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+	<!-- Slimscroll -->
+	<script src="<?php echo base_url(); ?>assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+	<!-- FastClick -->
+	<script src="<?php echo base_url(); ?>assets/plugins/fastclick/fastclick.js"></script>
+
 	<script type="text/javascript">
 	$(function() {
 		$("#datepicker").datepicker();
@@ -57,6 +102,10 @@
 	$(function() {
 		$("#datepicker2").datepicker();
 		$("#format2").change(function() { $('#datepicker2').datepicker('option', {dateFormat: $(this).val()}); });
+	});
+	$(function () {
+		//Initialize Select2 Elements
+		$(".select2").select2();
 	});
 	</script>
     <!--datepicker-->
@@ -75,15 +124,20 @@
 
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini">
 	<script src="<?php echo base_url(); ?>assets/highchart/highcharts.js"></script>
     <script src="<?php echo base_url(); ?>assets/highchart/highcharts-more.js"></script>
 	<script src="<?php echo base_url(); ?>assets/highchart/modules/exporting.js"></script>
+	<!-- Header -->
+	
     <div id="wrapper" >
-
+		<!-- Header
+		<header class="main-header">
+		
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;position:relative;">
-            <div class="navbar-header">
+        <!-- <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;position:relative;"> -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;position:relative;">
+			<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -170,12 +224,54 @@
                        
                        
                         <li>
-                            <a href="#"><i class="fa fa-database fa-fw"></i> Data Master<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-database fa-fw"></i> CCTV Data Master<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
 								<li style=" <?php echo $k31;?> ">
 									<!--<a href="flot.html">Flot Charts</a>-->
 									<?php
-									   echo anchor('item/detail_item/'.date('Y'),'<i class="fa fa-leaf fa-fw"></i> Item Master');
+									   echo anchor('customer/detail_cust/','<i class="fa fa-users fa-fw"></i> Customer');
+									   echo anchor('inventory/detail_inv/','<i class="fa fa-cubes fa-fw"></i> Inventory');
+									   echo anchor('item/detail_item/','<i class="fa fa-video-camera fa-fw"></i> Item Master');
+									   echo anchor('price/detail_price/','<i class="fa fa-usd fa-fw"></i> Price');
+									   //echo anchor('storeroom/detail_strm/','<i class="fa fa-archive fa-fw"></i> Storeroom');
+									?>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+						
+						<li>
+                            <a href="#"><i class="fa fa-handshake-o fa-fw"></i> Transaction<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+								<li style=" <?php echo $k32;?> ">
+									<!--<a href="flot.html">Flot Charts</a>-->
+									<?php
+									   echo anchor('pr/detail_pr/','<i class="fa fa-exchange fa-fw"></i> Purchase Request');
+									   echo anchor('po/detail_po/','<i class="fa fa-shopping-cart fa-fw"></i> Purchase Order');
+									?>
+                                </li>
+                            </ul>
+							<ul class="nav nav-second-level">
+								<li style=" <?php echo $k33;?> ">
+									<!--<a href="flot.html">Flot Charts</a>-->
+									<?php
+									   echo anchor('dismantle/detail_dis/','<i class="fa fa-random fa-fw"></i> Dismantle');
+									   echo anchor('install/detail_ins/','<i class="fa fa-upload fa-fw"></i> Installation Request');
+									   echo anchor('maintenance/detail_mtnc/','<i class="fa fa-wrench fa-fw"></i> Maintenance');
+									?>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+						
+						<li>
+                            <a href="#"><i class="fa fa-cogs fa-fw"></i> User Management<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+								<li style=" <?php echo $l31;?> ">
+									<!--<a href="flot.html">Flot Charts</a>-->
+									<?php
+									   echo anchor('employee/detail_em/','<i class="fa fa-address-card fa-fw"></i> Employee');
+									   echo anchor('user/detail_user/','<i class="fa fa-universal-access fa-fw"></i> User');
 									?>
                                 </li>
                             </ul>
@@ -193,8 +289,10 @@
 			
 			
         </nav>
-
-        <div id="page-wrapper">
+		
+		<!--</header> -->
+        
+		<div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="page-header">
