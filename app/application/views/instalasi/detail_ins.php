@@ -6,10 +6,10 @@
                     <div class="dataTable_wrapper">
                     
                     <div style="float:left">
-                    <?php echo anchor('printer/detail_em/','<i class="fa fa-print fa-fw"></i> Download Excel',array('target'=>'_blank'));?>
+                    <?php echo anchor('printer/detail_ins/','<i class="fa fa-print fa-fw"></i> Download Excel',array('target'=>'_blank'));?>
                     </div>
                     
-                    <?php echo form_open_multipart('employee/detail_em');?>
+                    <?php echo form_open_multipart('instalasi/detail_ins');?>
                     </div>
                     
                     </div>
@@ -24,13 +24,12 @@
                     <!--x-->
 						<div class="btn-group">
 							 <?php 
-							echo anchor('employee/tambah_daftar/','<i class="fa fa-plus fa-fw"></i> Employee Baru', array('class' => 'btn btn-primary btn-sm '));
-							echo '&nbsp;';
+							echo anchor('instalasi/tambah_daftar/','<i class="fa fa-plus fa-fw"></i> Instalasi Baru', array('class' => 'btn btn-primary btn-sm '));
 							?>
 						</div>
 						<div class="btn-group">
 							<?php
-							echo anchor('printer/detail_em/','<i class="fa fa-print fa-fw"></i> Export Excel', array('target' => '_blank', 'class' => 'btn btn-primary btn-sm '));
+							echo anchor('printer/detail_ins/','<i class="fa fa-print fa-fw"></i> Export Excel', array('target' => '_blank', 'class' => 'btn btn-primary btn-sm '));
 							?>
                         </div>
 						
@@ -42,25 +41,25 @@
 				<table class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:12px;">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Employee</th>
-                                            <th>Jabatan</th>
-                                            <th>Departemen</th>
-											<th>Tanggal Masuk</th>
-											<th>Status</th>
+                                            <th>Nomor Instalasi</th>
+                                            <th>Deskipsi Instalasi</th>
+											<th>Pelanggan</th>
+                                            <th>Tanggal Mulai</th>
+                                            <th>Tanggal Selesai</th>
+											<th>Pelaksana</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	<?php
+											$no = 1;
 											foreach($dokumen->result()as $dokumen)
 											{
 												
 										?>
                                     	<tr>
-                                        	<td><?php echo $dokumen->nopeg;?></td>
-                                            
-                                            <td>
-											<?php echo anchor('employee/edit_em/'.$dokumen->nopeg, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->nama);?>
+                                        	<td>
+											<?php echo anchor('instalasi/edit_ins/'.$dokumen->id_instalasi, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->id_instalasi);?>
                                             <span style="float:right;">
                                             <ul style="list-style:none">
                                                 <li class="dropdown">
@@ -74,13 +73,13 @@
                                                                     <strong>Delete</strong>
                                                                 </div>
                                                                 <div >
-                                                                <?php echo 'Employee : '.$dokumen->nama;?>
+                                                                <?php echo 'Instalasi : '.$dokumen->deskripsi;?>
                                                                 </div>
                                                             </span>
                                                         </li>        
                                                         <li>
                                                             <?php 
-															  echo anchor('employee/delete_em/'.$dokumen->nama,'Hapus', 
+															  echo anchor('instalasi/delete_ins/'.$dokumen->id_instalasi,'Hapus', 
 															  array(
 																	'class' => 'btn2 btn2-warning btn2-small fleft dropdown-toggle'
 																	)
@@ -94,21 +93,27 @@
                                             </span>
                                            
                                             </td>
-                                            
                                             <td>
-                                            <?php echo $dokumen->jabatan;?>
+											<?php echo $dokumen->deskripsi;?>
+											</td>
+                                            <td>
+                                            <?php echo $dokumen->customer;?>
                                             </td>
                                             <td>
-                                            <?php echo $dokumen->departemen;?>
+                                            <?php echo $dokumen->tgl_mulai;?>
                                             </td>
 											<td>
-                                            <?php echo $dokumen->tgl_masuk;?>
+                                            <?php echo $dokumen->tgl_selesai;?>
                                             </td>
-											<td>
+                                            <td>
+                                            <?php echo $dokumen->nama;?>
+                                            </td>
+                                            <td>
                                             <?php echo $dokumen->status;?>
                                             </td>
                                         </tr>
                                         <?php 
+										$no++;
 										
 										}
 										?>

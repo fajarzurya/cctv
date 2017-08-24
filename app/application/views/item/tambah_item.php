@@ -1,140 +1,100 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-body">
-                    <div class="dataTable_wrapper">
-                	
-                    <?php
-					/*if(($notif == 0)){
-						
-						}
-					elseif(($notif == 1)){
-						echo "<span class='label label-success'>Data Berhasil ditambah</span>";
-						}
-					elseif(($notif == 2)){
-						echo "<span class='label label-success'>Data Berhasil dihapus</span>";
-						}
-					else{
-						echo "<span class='label label-success'>Data Berhasil diubah</span>";
-						}*/
-					?>
-                    </div>
-                    <!-- /.table-responsive -->
-                    
-                </div>
-            </div>
             
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="dataTable_wrapper">
                 
                 <?php echo form_open_multipart('item/tambah_daftar');?>
-				<table class="table" id="dataTables-example" style="font-size:12px;">
-                                    
-                                    <tbody>
- 
-                                    	<tr>
-                                        	<td colspan="2">
-                                            Deskripsi :<br> 
-                                            <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi" maxlength="50" required>
-                                            </td>
-											<td>
-											Quantity : <br>
-											<input type="text" class="form-control pull-left" name="jumlah" placeholder="Jumlah" maxlength="3" required style="width:30%">&nbsp;&nbsp;&nbsp;
-											<input type="checkbox" name="grup" checked> Material Utama ?
-											</td>
-                                        	<td rowspan="4" >
-                                                Preview Item : <br>
-                                            	<textarea style="width:100%" maxlength="1000" ></textarea>
-                                            </td>
-                                        </tr>
-                                        
-                                        <tr>
-                                        	<td>
-                                            Satuan : <br>
-											<input type="text" class="form-control pull-left" name="satuan" placeholder="Satuan" style="width:80%" readonly>
-											<?php 
-											echo anchor('satuan/detail_satuan/','<i class="fa fa-plus-square"></i>', array('class' => 'btn btn-primary btn-sm pull-left'));
-											?>
-                                            <!--<select class="form-control" name="satuan">
-                                                <option value="Buah">Buah
-                                                </option>
-                                                <option value="Lusin">Lusin
-                                                </option>
-                                            </select>-->
-                                            </td>
-											<td>
-											Kondisi :
-											<select class="form-control" name="kondisi">
-												<option value="Baru">Baru
-                                                </option>
-                                                <option value="Ex-Pakai">Ex-Pakai
-                                                </option>
-                                            </select>
-											</td>
-											<td>
-											Gudang : <br>
-											<input type="text" class="form-control pull-left" name="gudang" placeholder="Gudang" style="width:60%" readonly>
-											<?php 
-											echo anchor('gudang/detail_gudang/','<i class="fa fa-plus-square"></i>', array('class' => 'btn btn-primary btn-sm pull-left'));
-											?>
-											</td>          
-										</tr>
-										<tr>
-											<td>
-											Harga : <br>
-											<input type="text" class="form-control" name="harga" placeholder="Rp. 0">
-											</td>
-											<td>
-											Supplier : <br>
-											<input type="text" class="form-control pull-left" name="supplier" placeholder="Supplier" style="width:70%" readonly>
-											<button type="button" class="btn btn-info btn-lg fa fa-plus-square fa-lg" data-toggle="modal" data-target="#modalSupplier"></button>
-											<!-------Modal Supplier---------->
-											<div class="modal fade" id="modalSupplier" role="dialog">
-											  <div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header" style="padding:20px 50px;">
-													  <button type="button" class="close" data-dismiss="modal">&times;</button>
-													  <h4><span class="fa fa-users fa-lg"></span> List Supplier</h4>
-													</div>
-													<div class="modal-body" style="padding:40px 50px;">
-													  <form role="form">
-														<div class="form-group">
-														  <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-														  <input type="text" class="form-control" id="usrname" placeholder="Enter email">
-														</div>
-														<div class="form-group">
-														  <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-														  <input type="text" class="form-control" id="psw" placeholder="Enter password">
-														</div>
-													  </form>
-													</div>
-													<div class="modal-footer">
-													  <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-													  <button type="submit" class="btn btn-success btn-default pull-right"><span class="glyphicon glyphicon-off"></span> OK</button>
-													</div>
-												  </div><!-- /.modal-content -->
-											  </div><!-- /.modal-dialog -->
-											</div><!-- /.modal -->
-											
-											</td>
-                                        </tr>                                     
-                                        
-                                        <tr>
-                                        	<td colspan="3">
-                                               
-                                               <div class="form-group">
-                                                    <input type="submit" class="btn btn-primary btn-sm" value="Simpan" />
-                                                </div>
-                                            
-                                            </td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                   </table>
-               	   <?php echo form_close();?>
+				<section class="content">
+				  <div class="row">
+				  <!-- general form elements -->
+					  <div class="box box-primary">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Item Detail</h3>
+						</div>
+						<!-- /.box-header -->
+						  <div class="box-body">
+							<div class="col-xs-4 form-group">
+							  <label>Nomor Item</label>
+							  <input type="text" class="form-control" name="noitem" placeholder="Nomor Item" value="<?php echo $kodebrg;?>"readonly>
+							</div>
+							<div class="col-xs-6 form-group">
+							  <label>Deskripsi Item</label>
+							  <input type="text" class="form-control" style="text-transform:uppercase;" name="deskripsi" placeholder="Deskripsi Item">
+							</div>
+							<div class="col-xs-2 form-group">
+							  <label>&nbsp;</label>
+								<br><br><br>
+							</div>
+							<!-- Status 
+							<div class="col-xs-2 form-group">
+							  <label>Status</label>
+							  <select class="form-control" name="status">
+								<option>Aktif</option>
+								<option>Tidak Aktif</option>
+							  </select>
+							</div> -->
+							<!-- Jenis -->
+							<div class="col-xs-3 form-group">
+							  <label>Jenis Kamera</label>
+							   <select class="form-control" name="jenis">
+								<option></option>
+								<option>BULLET CAM</option>
+								<option>IP CAM</option>
+								<option>IR CAM</option>
+								<option>PORTABLE CAM</option>
+							  </select>
+							</div>
+							<!-- Satuan -->
+							<div class="col-xs-3 form-group">
+							  <label>Satuan</label>
+							  <div class="input-group">
+							   <input type="text" class="form-control" name="satuan" placeholder="Satuan" readonly>
+							    <div class="input-group-addon">
+								 <i class="fa fa-plus-square"></i>
+								</div>
+							  </div>
+							  <!--<button type="button" class="btn btn-primary btn-md fa fa-plus-square pull-left" data-toggle="modal" data-target="#modalSatuan"></button>-->
+							</div>
+							<!-- Gambar -->
+							<div class="form-group col-xs-4">
+							  <label>Foto</label>
+							  <input type="file" name="gambar">
+							</div>
+							
+							<div class="form-group col-xs-2">
+							  <label>&nbsp;</label>
+								<br><br><br>
+							</div>
+							
+							<!-- Manufaktur -->
+							<div class="col-xs-6 form-group">
+							  <label>Manufaktur</label>
+							  <input type="text" class="form-control" style="text-transform:uppercase;" name="manufaktur" placeholder="Manufaktur">
+							</div>
+							<!-- Grup -->
+							<div class="col-xs-3 form-group">
+							  <label>Grup</label>
+							  <select class="form-control" name="grup">
+								<option>Utama</option>
+								<option>Pendukung</option>
+							  </select>
+							</div>
+							  <!--<button type="button" class="btn btn-primary btn-md fa fa-plus-square pull-left" data-toggle="modal" data-target="#modalSatuan"></button>-->
+							</div>
+						  </div>
+						</div>
+						  <!-- /.box-body -->
+					  </div>
+					  <!-- /.box -->
+					<div class="box-footer">
+						<button type="submit" class="btn btn-block bg-green-active">Simpan</button>
+						<!--<button type="button" class="btn btn-block bg-light-blue" data-dismiss>Batal</button>-->
+					</div>
+				</section>
+               	<?php echo form_close();?>
                 </div>
                 <!-- /.table-responsive -->
 				

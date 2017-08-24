@@ -99,7 +99,7 @@
                 <!--<div class="login-panel panel panel-default">-->
 				<div class="middle-box text-center loginscreen animated fadeInLeft login-panel panel panel-default">
                     <div class="panel-heading" style="background:#069;color:#FFF">
-                        <h3 class="panel-title">Login Project CCTV</h3>
+                        <h3 class="panel-title">Login Sistem</h3>
                     </div>
                     <div class="panel-body">
                        

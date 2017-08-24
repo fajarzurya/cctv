@@ -22,13 +22,13 @@
             <div class="panel-body">
 				<div class="box-footer clearfix">
                     <!--x-->
-						<div class="btn-group pull-right">
+						<div class="btn-group">
 							 <?php 
-							echo anchor('user/tambah_daftar/','<i class="fa fa-plus fa-fw"></i> New User', array('class' => 'btn btn-primary btn-sm '));
+							echo anchor('user/tambah_daftar/','<i class="fa fa-plus fa-fw"></i> User Baru', array('class' => 'btn btn-primary btn-sm '));
 							echo '&nbsp;';
 							?>
 						</div>
-						<div class="btn-group pull-right">
+						<div class="btn-group">
 							<?php
 							echo anchor('printer/detail_user/','<i class="fa fa-print fa-fw"></i> Export Excel', array('target' => '_blank', 'class' => 'btn btn-primary btn-sm '));
 							?>
@@ -42,24 +42,24 @@
 				<table class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:12px;">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>User</th>
-                                            <th>Alamat</th>
-                                            <th>Kontak</th>
+                                            <th>No.</th>
+                                            <th>Karyawan</th>
+                                            <th>Username</th>
+											<th>Tipe User</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	<?php
 											$no = 1;
-											foreach($dokumen->result()as $dokumen)
-											{
+											// foreach($dokumen->result()as $dokumen)
+											// {
 												
 										?>
                                     	<tr>
                                         	<td><?php echo $no;?></td>
                                             
                                             <td>
-											<?php echo anchor('user/edit_user/'.$dokumen->id, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->user);?>
+											<!--<?php echo anchor('user/edit_user/'.$dokumen->id_user, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->user);?>-->
                                             <span style="float:right;">
                                             <ul style="list-style:none">
                                                 <li class="dropdown">
@@ -95,16 +95,16 @@
                                             </td>
                                             
                                             <td>
-                                            <?php echo $dokumen->alamat;?>
+                                            <!--<?php echo $dokumen->alamat;?>-->
                                             </td>
                                             <td>
-                                            <?php echo $dokumen->kontak;?>
+                                            <!--<?php echo $dokumen->kontak;?>-->
                                             </td>
                                         </tr>
                                         <?php 
 										$no++;
 										
-										}
+										// }
 										?>
                                     </tbody>
                    </table>

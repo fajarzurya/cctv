@@ -34,79 +34,88 @@
                 foreach($dokumen->result()as $dokumen)
 											{
 				?>
-				<table class="table" id="dataTables-example" style="font-size:12px;" border='0'>
-                                    
-                                    <tbody>
- 
-                                    	<tr>
-                                        	<td colspan="2">
-                                            Deskripsi :<br> 
-                                            <input type="hidden" class="form-control" name="id" placeholder="id" value="<?php echo $dokumen->id;?>" maxlength="17" required>
-                                            <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi" value="<?php echo $dokumen->deskripsi;?>" maxlength="17" required>
-                                            </td>
-											<td>
-											Quantity : <br>
-											<input type="text" class="form-control pull-left" name="jumlah" placeholder="Jumlah" maxlength="3" required style="width:30%" value="<?php echo $dokumen->jumlah;?>">&nbsp;&nbsp;&nbsp;
-											<input type="checkbox" name="grup" checked> Material Utama ?
-											</td>
-                                        	<td rowspan="4" >
-                                                Preview Item : <br>
-                                            	<textarea style="width:100%" maxlength="1000" ></textarea>
-                                            </td>
-                                        </tr>
-                                        
-                                        <tr>
-                                        	<td>
-                                            Satuan : <br>
-                                            <input type="text" class="form-control pull-left" name="satuan" placeholder="Satuan" style="width:84%" value="<?php echo $dokumen->satuan;?>" readonly>
-											<?php 
-											echo anchor('satuan/detail_satuan/','<i class="fa fa-plus-square"></i>', array('class' => 'btn btn-primary btn-sm pull-left'));
-											?>
-                                            </td>
-											<td>
-											Kondisi :
-											<select class="form-control" name="kondisi">
-                                                <option value="<?php echo $dokumen->kondisi;?>" selected="selected"></option>
-												<option value="Baru">Baru
-                                                </option>
-                                                <option value="Ex-Pakai">Ex-Pakai
-                                                </option>
-                                            </select>
-											</td>
-											<td>
-											Gudang : <br>
-											<input type="text" class="form-control pull-left" name="gudang" placeholder="Gudang" style="width:60%" value="<?php echo $dokumen->id_gudang;?>" readonly>
-											<?php 
-											echo anchor('gudang/detail_gudang/','<i class="fa fa-plus-square"></i>', array('class' => 'btn btn-primary btn-sm pull-left'));
-											?>
-											</td>                                            
-                                        </tr>
-										<tr>
-											<td>
-											Harga : <br>
-											<input type="text" class="form-control" name="harga" placeholder="Rp. 0" value="<?php echo $dokumen->harga;?>">
-											</td>
-											<td>
-											Supplier : <br>
-											<input type="text" class="form-control pull-left" name="supplier" placeholder="Supplier" style="width:60%" readonly value="<?php echo $dokumen->id_gudang;?>">
-											<?php 
-											echo anchor('supplier/detail_supplier/','<i class="fa fa-plus-square"></i>', array('class' => 'btn btn-primary btn-sm pull-left'));
-											?>
-											</td>
-										</tr>
-                                        <tr>
-                                        	<td colspan="3">
-                                               
-                                               <div class="form-group">
-                                                    <input type="submit" class="btn btn-primary btn-sm" value="Update" />
-                                                    <input type="button" onclick="location.href='<?php echo base_url(); ?>index.php/item/detail_item'" class="btn btn-primary btn-sm" value="Cancel" />
-                                               </div>
-                                            </td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                   </table>
+				<section class="content">
+				  <div class="row">
+				  <!-- general form elements -->
+					  <div class="box box-primary">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Item Detail</h3>
+						</div>
+						<!-- /.box-header -->
+						  <div class="box-body">
+							<div class="col-xs-4 form-group">
+							  <label>Nomor Item</label>
+							  <input type="text" class="form-control" name="noitem" placeholder="Nomor Item" value="<?php echo $dokumen->id_barang;?>" readonly>
+							</div>
+							<div class="col-xs-6 form-group">
+							  <label>Deskripsi Item</label>
+							  <input type="text" class="form-control" style="text-transform:uppercase;" name="deskripsi" value="<?php echo $dokumen->deskripsi;?>" placeholder="Deskripsi Item">
+							</div>
+							<div class="col-xs-2 form-group">
+							  <label>&nbsp;</label>
+								<br><br><br>
+							</div>
+							<!-- Status
+							<div class="col-xs-2 form-group">
+							  <label>Status</label>
+							  <select class="form-control" name="status">
+								<option>Aktif</option>
+								<option>Tidak Aktif</option>
+							  </select>
+							</div> -->
+							<!-- Jenis -->
+							<div class="col-xs-3 form-group">
+							  <label>Jenis Kamera</label>
+							   <select class="form-control" name="jenis">
+								<option value="<?php echo $dokumen->jenis;?>">- Terpilih <?php echo $dokumen->jenis;?> -</option>
+								<option>BULLET CAM</option>
+								<option>IP CAM</option>
+								<option>IR CAM</option>
+								<option>PORTABLE CAM</option>
+							  </select>
+							</div>
+							<!-- Satuan -->
+							<div class="col-xs-3 form-group">
+							  <label>Satuan</label>
+							  <div class="input-group">
+							   <input type="text" class="form-control" name="satuan" placeholder="Satuan" readonly>
+							    <div class="input-group-addon">
+								 <i class="fa fa-plus-square"></i>
+								</div>
+							  </div>
+							  <!--<button type="button" class="btn btn-primary btn-md fa fa-plus-square pull-left" data-toggle="modal" data-target="#modalSatuan"></button>-->
+							</div>
+							<!-- Gambar -->
+							<div class="form-group">
+							  <label>Foto</label>
+							  <input type="file" name="gambar" value="<?php echo $dokumen->gambar;?>">
+							</div>
+							<!-- Manufaktur -->
+							<div class="col-xs-7 form-group">
+							  <label>Manufaktur</label>
+							  <input type="text" class="form-control" style="text-transform:uppercase;" name="manufaktur" placeholder="Manufaktur" value="<?php echo $dokumen->manufaktur;?>">
+							</div>
+							<!-- Grup -->
+							<div class="col-xs-3 form-group">
+							  <label>Grup</label>
+							  <select class="form-control" name="grup">
+								<option value="<?php echo $dokumen->grup;?>">- Terpilih <?php echo $dokumen->grup;?> -</option>
+								<option>Utama</option>
+								<option>Pendukung</option>
+							  </select>
+							</div>
+							  <!--<button type="button" class="btn btn-primary btn-md fa fa-plus-square pull-left" data-toggle="modal" data-target="#modalSatuan"></button>-->
+							</div>
+						  </div>
+						</div>
+						  <!-- /.box-body -->
+					  </div>
+					  <!-- /.box -->
+					<div class="box-footer">
+						<button type="submit" class="btn btn-block bg-green-active">Simpan</button>
+						<!--<button type="button" class="btn btn-block bg-light-blue" data-dismiss>Batal</button>-->
+					</div>
+				</section>
                    <?php
 					}
 				   ?>

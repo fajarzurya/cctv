@@ -15,8 +15,13 @@
 	   public function index()
 	   {
 		 	$this->load->model('usermodel');
+			$this->load->model('dashboardmodel');
 			
 			//$data['dokumen'] = $this->mastermodel->unit();
+			$data['total_item'] = $this->dashboardmodel->item();
+			$data['customer'] = $this->dashboardmodel->customer();
+			$data['instalasi'] = $this->dashboardmodel->instalasi();
+			$data['kontrak'] = $this->dashboardmodel->kontrak();
 
 			if(empty($this->uri->segment(3))){
 				  $th = date('Y');
@@ -82,5 +87,4 @@
 		  	
 		 redirect('home/');
 	   }
-
 	}

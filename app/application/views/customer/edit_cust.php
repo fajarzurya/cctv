@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <!--<div class="panel-heading">
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
                 	
@@ -20,93 +20,149 @@
 						}*/
 					?>
                     </div>
-                    <!-- /.table-responsive -->
                     
                 </div>
-            </div>
+            </div>-->
             
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="dataTable_wrapper">
                 
-                <?php echo form_open_multipart('item/edit_item');?>
+                <?php echo form_open_multipart('customer/edit_cust');?>
                 <?php
                 foreach($dokumen->result()as $dokumen)
 											{
 				?>
-				<table class="table" id="dataTables-example" style="font-size:12px;" border='0'>
-                                    
-                                    <tbody>
- 
-                                    	<tr>
-                                        	<td colspan="2">
-                                            Deskripsi :<br> 
-                                            <input type="hidden" class="form-control" name="id" placeholder="id" value="<?php echo $dokumen->id;?>" maxlength="17" required>
-                                            <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi" value="<?php echo $dokumen->deskripsi;?>" maxlength="17" required>
-                                            </td>
-											<td>
-											Quantity : <br>
-											<input type="text" class="form-control pull-left" name="jumlah" placeholder="Jumlah" maxlength="3" required style="width:30%" value="<?php echo $dokumen->jumlah;?>">&nbsp;&nbsp;&nbsp;
-											<input type="checkbox" name="grup" checked> Material Utama ?
-											</td>
-                                        	<td rowspan="4" >
-                                                Preview Item : <br>
-                                            	<textarea style="width:100%" maxlength="1000" ></textarea>
-                                            </td>
-                                        </tr>
-                                        
-                                        <tr>
-                                        	<td>
-                                            Satuan : <br>
-                                            <input type="text" class="form-control pull-left" name="satuan" placeholder="Satuan" style="width:84%" value="<?php echo $dokumen->satuan;?>" readonly>
-											<?php 
-											echo anchor('satuan/detail_satuan/','<i class="fa fa-plus-square"></i>', array('class' => 'btn btn-primary btn-sm pull-left'));
-											?>
-                                            </td>
-											<td>
-											Kondisi :
-											<select class="form-control" name="kondisi">
-                                                <option value="<?php echo $dokumen->kondisi;?>" selected="selected"></option>
-												<option value="Baru">Baru
-                                                </option>
-                                                <option value="Ex-Pakai">Ex-Pakai
-                                                </option>
-                                            </select>
-											</td>
-											<td>
-											Gudang : <br>
-											<input type="text" class="form-control pull-left" name="gudang" placeholder="Gudang" style="width:60%" value="<?php echo $dokumen->id_gudang;?>" readonly>
-											<?php 
-											echo anchor('gudang/detail_gudang/','<i class="fa fa-plus-square"></i>', array('class' => 'btn btn-primary btn-sm pull-left'));
-											?>
-											</td>                                            
-                                        </tr>
-										<tr>
-											<td>
-											Harga : <br>
-											<input type="text" class="form-control" name="harga" placeholder="Rp. 0" value="<?php echo $dokumen->harga;?>">
-											</td>
-											<td>
-											Supplier : <br>
-											<input type="text" class="form-control pull-left" name="supplier" placeholder="Supplier" style="width:60%" readonly value="<?php echo $dokumen->id_gudang;?>">
-											<?php 
-											echo anchor('supplier/detail_supplier/','<i class="fa fa-plus-square"></i>', array('class' => 'btn btn-primary btn-sm pull-left'));
-											?>
-											</td>
-										</tr>
-                                        <tr>
-                                        	<td colspan="3">
-                                               
-                                               <div class="form-group">
-                                                    <input type="submit" class="btn btn-primary btn-sm" value="Update" />
-                                                    <input type="button" onclick="location.href='<?php echo base_url(); ?>index.php/item/detail_item'" class="btn btn-primary btn-sm" value="Cancel" />
-                                               </div>
-                                            </td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                   </table>
+				<section class="content">
+				  <div class="row">
+				  <!-- general form elements -->
+					  <div class="box box-primary">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Costumer Detail</h3>
+						</div>
+						<!-- /.box-header -->
+						  <div class="box-body">
+							<div class="col-xs-3">
+							  <label>Kode Pelanggan</label>
+							  <input type="text" class="form-control" name="kode" placeholder="Kode Pelanggan"  value="<?php echo $dokumen->id_customer;?>" readonly>
+							</div>
+							<div class="col-xs-6">
+							  <label>Deskripsi</label>
+							  <input type="text" class="form-control" name="deskripsi" style="text-transform:uppercase;" placeholder="Deskripsi" value="<?php echo $dokumen->customer;?>" id="deskripsi" onkeyup="sync(this)" required>
+							</div>
+							<!-- select -->
+							<div class="col-xs-3">
+							  <label>Tipe Pelanggan</label>
+							  <select class="form-control" name="tipe">
+								<option value="<?php echo $dokumen->tipe;?>" selected>
+								<?php 
+									if($dokumen->tipe==1){
+										echo "Terpilih Perusahaan";
+									}else if($dokumen->tipe==2){
+										echo "Terpilih Perorangan";
+									}
+								?>
+								</option>
+								<option value="1">Perusahaan</option>
+								<option value="2">Perorangan</option>
+							  </select>
+							</div>
+						  </div>
+						  <!-- /.box-body -->
+					  </div>
+					  <!-- /.box -->
+					<!-- left column -->
+					<div class="col-md-6">
+					<!-- Contact -->
+					  <div class="box box-info">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Contact</h3>
+						</div>
+						<div class="box-body">
+						  <div class="input-group">
+							<input type="text" class="form-control" name="kontak" placeholder="Nama Kontak" value="<?php echo $dokumen->kontak;?>" id="kontak" style="text-transform:uppercase;">
+							<input type="hidden" class="form-control" name="id_kontak" value="<?php echo $dokumen->id_kontak;?>">
+							<span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+						  </div>
+						  <br>
+						  <div class="input-group">
+							<input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $dokumen->email;?>">
+							<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+						  </div>
+						  <br>
+						  
+						  <h4>Phone</h4>
+
+						  <div class="input-group">
+							<input type="text" class="form-control" name="hp" placeholder="HP" value="<?php echo $dokumen->hp;?>" data-inputmask='"mask": "+(62)99999999999"' data-mask>
+							<span class="input-group-addon"><i class="fa fa-mobile-phone fa-lg"></i></span>
+						  </div>
+						  <br>
+						  <div class="input-group">
+							<input type="text" class="form-control" name="phone" placeholder="Telephone Rumah" value="<?php echo $dokumen->telpon;?>" data-inputmask='"mask": "(999)9999999"' data-mask>
+							<span class="input-group-addon"><i class="fa fa-phone"></i></span>
+						  </div>
+						  <br>
+						  <!--<div class="btn-group">
+							 <button type="button" class="btn btn-info">
+							 <i class="fa fa-search"></i> &nbsp;Pilih Kontak
+						     </button>	 
+						  </div>-->
+						  <!-- /input-group -->
+						</div>
+						<!-- /.box-body -->
+					  </div>
+					  <!-- /.box --> 
+					</div>
+					<!--/.col (left) -->
+					<!-- right column -->
+					<div class="col-md-6">
+					<!-- general form elements -->
+					  <div class="box box-info">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Address</h3>
+						</div>
+						<!-- /.box-header -->
+						  <div class="box-body">
+							<div class="form-group" style="float:left;width:50%;padding-right:50px">
+							  <label>Kode Pos</label>
+							  <input type="text" class="form-control" name="kodepos" placeholder="Kode Pos" value="<?php echo $dokumen->kode_pos;?>" data-inputmask='"mask": "99999"' data-mask>
+							  <input type="hidden" class="form-control" name="id_alamat" value="<?php echo $dokumen->id_alamat;?>">
+							</div>
+							<div class="form-group" style="float:left;width:50%;padding-left:2px">
+							  <label>Kecamatan</label>
+							  <input type="text" class="form-control" name="kecamatan" placeholder="Kecamatan" value="<?php echo $dokumen->kecamatan;?>" >
+							</div>
+							<div class="form-group" style="float:left;width:50%">
+							  <label>Kota/Kabupaten</label>
+							  <input type="text" class="form-control" name="kota" placeholder="Kota/Kabupaten" value="<?php echo $dokumen->kota;?>" >
+							</div>
+							<div class="form-group" style="float:left;width:50%;padding-left:2px">
+							  <label>Provinsi</label>
+							  <input type="text" class="form-control" name="provinsi" placeholder="Provinsi" value="<?php echo $dokumen->provinsi;?>" >
+							</div>
+							<div class="form-group">
+							  <label>Alamat</label>
+							  <textarea class="form-control" rows="2" name="alamat" ><?php echo $dokumen->alamat;?></textarea>
+							</div>
+							<!--<div class="btn-group">
+							 <button type="button" class="btn btn-info">
+								<i class="fa fa-search"></i> &nbsp;Pilih Alamat
+							 </button>
+							</div>-->
+						  </div>
+						  </div>
+						  <!-- /.box-body -->
+					  </div>
+					  <!-- /.box -->
+					</div>
+					<div class="box-footer">
+						<button type="submit" class="btn btn-block bg-green-active">Update</button>
+						<button type="button" class="btn btn-block bg-blue-active">Batal</button>
+						<!--<button type="button" class="btn btn-block bg-light-blue" data-dismiss>Batal</button>-->
+					</div>
+				  </div>
+				</section>
                    <?php
 					}
 				   ?>

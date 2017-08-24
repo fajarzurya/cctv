@@ -22,13 +22,12 @@
             <div class="panel-body">
 				<div class="box-footer clearfix">
                     <!--x-->
-						<div class="btn-group pull-right">
+						<div class="btn-group">
 							 <?php 
-							echo anchor('item/tambah_daftar/','<i class="fa fa-plus fa-fw"></i> New Item', array('class' => 'btn btn-primary btn-sm '));
-							echo '&nbsp;';
+							echo anchor('item/tambah_daftar/','<i class="fa fa-plus fa-fw"></i> Item Baru', array('class' => 'btn btn-primary btn-sm '));
 							?>
 						</div>
-						<div class="btn-group pull-right">
+						<div class="btn-group">
 							<?php
 							echo anchor('printer/detail_item/','<i class="fa fa-print fa-fw"></i> Export Excel', array('target' => '_blank', 'class' => 'btn btn-primary btn-sm '));
 							?>
@@ -43,12 +42,13 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+											<th>No. Item</th>
                                             <th>Deskripsi</th>
-                                            <th>Jumlah</th>
                                             <th>Satuan</th>
-											<th>Gudang</th>
-											<th>Kondisi</th>
+											<th>Manufaktur</th>
+											<th>Jenis</th>
 											<th>Grup</th>
+											<th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +62,7 @@
                                         	<td><?php echo $no;?></td>
                                             
                                             <td>
-											<?php echo anchor('item/edit_item/'.$dokumen->id, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->deskripsi);?>
+											<?php echo anchor('item/edit_item/'.$dokumen->id_barang, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->id_barang);?>
                                             <span style="float:right;">
                                             <ul style="list-style:none">
                                                 <li class="dropdown">
@@ -82,7 +82,7 @@
                                                         </li>        
                                                         <li>
                                                             <?php 
-															  echo anchor('item/delete_item/'.$dokumen->id,'Hapus', 
+															  echo anchor('item/delete_item/'.$dokumen->id_barang,'Hapus', 
 															  array(
 																	'class' => 'btn2 btn2-warning btn2-small fleft dropdown-toggle'
 																	)
@@ -98,20 +98,24 @@
                                             </td>
                                             
                                             <td>
-                                            <?php echo $dokumen->jumlah;?>
+                                            <?php echo $dokumen->deskripsi;?>
                                             </td>
                                             <td>
                                             <?php echo $dokumen->satuan;?>
                                             </td>
 											<td>
-                                            <?php echo $dokumen->id_gudang;?>
+                                            <?php echo $dokumen->manufaktur;?>
                                             </td>
                                             <td>
-                                            <?php echo $dokumen->kondisi;?>
+                                            <?php echo $dokumen->jenis;?>
                                             </td>
 											<td>
                                             <?php echo $dokumen->grup;?>
                                             </td>
+											<td>
+                                            <?php echo anchor('item/edit_inv/'.$dokumen->id_barang,'<i class="fa fa-archive fa-fw"></i>', array('target' => '_blank', 'class' => 'btn btn-danger btn-sm '));?>
+                                            </td>
+
                                         </tr>
                                         <?php 
 										$no++;

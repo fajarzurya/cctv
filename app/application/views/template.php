@@ -23,8 +23,9 @@
     <script src="<?php echo base_url(); ?>assets/gantchart/js/jquery.fn.gantt.js"></script>
 	<!-- Select2 -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/dist/css/select2.min.css">
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- Ionicons
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/ionicons.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -74,6 +75,10 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/datepicker/js/ui.datepicker.js"></script>
 	<!-- Select2 -->
 	<script src="<?php echo base_url(); ?>assets/plugins/select2/dist/js/select2.full.min.js"></script>
+	<!-- InputMask -->
+	<script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
+	<script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+	<script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 	<script src="<?php echo base_url(); ?>assets/plugins/morris/morris.min.js"></script>
 	<!-- Sparkline -->
 	<script src="<?php echo base_url(); ?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -82,8 +87,9 @@
 	<script src="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<!-- jQuery Knob Chart -->
 	<script src="<?php echo base_url(); ?>assets/plugins/knob/jquery.knob.js"></script>
-	<!-- daterangepicker -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+	<!-- daterangepicker
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script> -->
+	<script src="<?php echo base_url(); ?>assets/dist/js/moment.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
 	<!-- datepicker -->
 	<script src="<?php echo base_url(); ?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -100,14 +106,25 @@
 		$("#format").change(function() { $('#datepicker').datepicker('option', {dateFormat: $(this).val()}); });
 	});
 	$(function() {
+		$("#datepicker1").datepicker();
+		$("#format2").change(function() { $('#datepicker1').datepicker('option', {dateFormat: $(this).val()}); });
+	});
+	$(function() {
 		$("#datepicker2").datepicker();
 		$("#format2").change(function() { $('#datepicker2').datepicker('option', {dateFormat: $(this).val()}); });
+	});
+	$(function() {
+		$("#datepicker3").datepicker();
+		$("#format2").change(function() { $('#datepicker3').datepicker('option', {dateFormat: $(this).val()}); });
 	});
 	$(function () {
 		//Initialize Select2 Elements
 		$(".select2").select2();
+		//Data Input Mask
+		$("[data-mask]").inputmask();
 	});
 	</script>
+	
     <!--datepicker-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -224,15 +241,15 @@
                        
                        
                         <li>
-                            <a href="#"><i class="fa fa-database fa-fw"></i> CCTV Data Master<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-database fa-fw"></i> Data Master<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
 								<li style=" <?php echo $k31;?> ">
 									<!--<a href="flot.html">Flot Charts</a>-->
 									<?php
 									   echo anchor('customer/detail_cust/','<i class="fa fa-users fa-fw"></i> Customer');
-									   echo anchor('inventory/detail_inv/','<i class="fa fa-cubes fa-fw"></i> Inventory');
+									   echo anchor('item/detail_inv/','<i class="fa fa-cubes fa-fw"></i> Inventory');
 									   echo anchor('item/detail_item/','<i class="fa fa-video-camera fa-fw"></i> Item Master');
-									   echo anchor('price/detail_price/','<i class="fa fa-usd fa-fw"></i> Price');
+									   //echo anchor('price/detail_price/','<i class="fa fa-usd fa-fw"></i> Price');
 									   //echo anchor('storeroom/detail_strm/','<i class="fa fa-archive fa-fw"></i> Storeroom');
 									?>
                                 </li>
@@ -241,13 +258,13 @@
                         </li>
 						
 						<li>
-                            <a href="#"><i class="fa fa-handshake-o fa-fw"></i> Transaction<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-handshake-o fa-fw"></i> Transaksi<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
 								<li style=" <?php echo $k32;?> ">
 									<!--<a href="flot.html">Flot Charts</a>-->
 									<?php
-									   echo anchor('pr/detail_pr/','<i class="fa fa-exchange fa-fw"></i> Purchase Request');
-									   echo anchor('po/detail_po/','<i class="fa fa-shopping-cart fa-fw"></i> Purchase Order');
+									   //echo anchor('pr/detail_pr/','<i class="fa fa-exchange fa-fw"></i> Purchase Request');
+									   //echo anchor('po/detail_po/','<i class="fa fa-shopping-cart fa-fw"></i> Purchase Order');
 									?>
                                 </li>
                             </ul>
@@ -255,9 +272,9 @@
 								<li style=" <?php echo $k33;?> ">
 									<!--<a href="flot.html">Flot Charts</a>-->
 									<?php
-									   echo anchor('dismantle/detail_dis/','<i class="fa fa-random fa-fw"></i> Dismantle');
-									   echo anchor('install/detail_ins/','<i class="fa fa-upload fa-fw"></i> Installation Request');
-									   echo anchor('maintenance/detail_mtnc/','<i class="fa fa-wrench fa-fw"></i> Maintenance');
+									   echo anchor('instalasi/detail_ins/','<i class="fa fa-upload fa-fw"></i> Instalasi');
+									   echo anchor('pemeliharaan/detail_mtnc/','<i class="fa fa-wrench fa-fw"></i> Pemeliharaan');
+									   echo anchor('pelepasan/detail_dis/','<i class="fa fa-random fa-fw"></i> Pelepasan');
 									?>
                                 </li>
                             </ul>
@@ -265,7 +282,7 @@
                         </li>
 						
 						<li>
-                            <a href="#"><i class="fa fa-cogs fa-fw"></i> User Management<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-cogs fa-fw"></i> Manajemen User<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
 								<li style=" <?php echo $l31;?> ">
 									<!--<a href="flot.html">Flot Charts</a>-->
@@ -338,6 +355,8 @@
 	<script src="<?php //echo base_url(); ?>assets/bower_components/raphael/raphael-min.js"></script>
 	<script src="<?php //echo base_url(); ?>assets/bower_components/morrisjs/morris.min.js"></script>
 	-->
+	<!-- ChartJS 1.0.1 -->
+	<script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url(); ?>assets/dist/js/sb-admin-2.js"></script>
     
@@ -347,10 +366,62 @@
     <script>
 		$('.textarea').wysihtml5();
 	</script>
-	
+	<script>
+	function sync(textbox)
+	{
+	  document.getElementById('kontak').value = textbox.value;
+	}
+	</script>
+	<script>
+	function changeValue(o){
+     document.getElementById('set1').value=o.innerHTML;
+    }
+	</script>
+	<script>
+	function ganti2(o){
+     document.getElementById('set2').value=o.innerHTML;
+    }
+	</script>
 	<script type="text/javascript" charset="utf-8">
 		$(prettyPrint);
 	</script>
+	<script>
+	$(document).ready(function(){
+		
+		$("#satu").hide();
+		$("#dua").hide();
+		$("#minus").hide();
+		$("#satu_klik_min").hide();
+		
+		$("#satu_klik_plus").click(function(){
+			$("#satu_klik_plus").hide();
+			$("#satu_klik_min").show();
+			$("#satu").show(500);
+		}
+		);
+		$("#satu_klik_min").click(function(){
+			$("#satu_klik_min").hide();
+			$("#satu_klik_plus").show();
+			$("#satu").hide(500);
+		}
+		);
+		
+		$("#plus").click(function(){
+			$("#plus").hide();
+			$("#minus").show();
+			$("#dua").show(500);
+		}
+		);
+		$("#minus").click(function(){
+			$("#minus").hide();
+			$("#plus").show();
+			$("#dua").hide(500);
+		}
+		);
+	}
+	);
+	</script>
+	
     
     
         

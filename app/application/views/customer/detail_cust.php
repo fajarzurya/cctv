@@ -22,13 +22,12 @@
             <div class="panel-body">
 				<div class="box-footer clearfix">
                     <!--x-->
-						<div class="btn-group pull-right">
+						<div class="btn-group">
 							 <?php 
-							echo anchor('customer/tambah_daftar/','<i class="fa fa-plus fa-fw"></i> New Customer', array('class' => 'btn btn-primary btn-sm '));
-							echo '&nbsp;';
+							echo anchor('customer/tambah_daftar/','<i class="fa fa-plus fa-fw"></i> Pelanggan Baru', array('class' => 'btn btn-primary btn-sm '));
 							?>
 						</div>
-						<div class="btn-group pull-right">
+						<div class="btn-group">
 							<?php
 							echo anchor('printer/detail_cust/','<i class="fa fa-print fa-fw"></i> Export Excel', array('target' => '_blank', 'class' => 'btn btn-primary btn-sm '));
 							?>
@@ -43,9 +42,11 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Customer</th>
+											<th>Kode Pelanggan</th>
+                                            <th>Pelanggan</th>
                                             <th>Alamat</th>
                                             <th>Kontak</th>
+											<th>Tipe</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,9 +58,8 @@
 										?>
                                     	<tr>
                                         	<td><?php echo $no;?></td>
-                                            
                                             <td>
-											<?php echo anchor('customer/edit_cust/'.$dokumen->id, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->customer);?>
+											<?php echo anchor('customer/edit_cust/'.$dokumen->ID_CUSTOMER, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->ID_CUSTOMER);?>
                                             <span style="float:right;">
                                             <ul style="list-style:none">
                                                 <li class="dropdown">
@@ -73,13 +73,13 @@
                                                                     <strong>Delete</strong>
                                                                 </div>
                                                                 <div >
-                                                                <?php echo 'cust : '.$dokumen->customer;?>
+                                                                <?php echo 'Customer : '.$dokumen->CUSTOMER;?>
                                                                 </div>
                                                             </span>
                                                         </li>        
                                                         <li>
                                                             <?php 
-															  echo anchor('customer/delete_cust/'.$dokumen->id,'Hapus', 
+															  echo anchor('customer/delete_cust/'.$dokumen->ID_CUSTOMER,'Hapus', 
 															  array(
 																	'class' => 'btn2 btn2-warning btn2-small fleft dropdown-toggle'
 																	)
@@ -93,12 +93,25 @@
                                             </span>
                                            
                                             </td>
-                                            
                                             <td>
-                                            <?php echo $dokumen->alamat;?>
+											<?php echo $dokumen->CUSTOMER;?>
+											</td>
+                                            <td>
+                                            <?php 
+												echo $dokumen->KECAMATAN.',&nbsp'.$dokumen->KOTA.',&nbsp'.$dokumen->PROVINSI.',&nbsp'.$dokumen->KODE_POS;?> 
                                             </td>
                                             <td>
-                                            <?php echo $dokumen->kontak;?>
+                                            <?php echo $dokumen->HP.',&nbsp'.$dokumen->EMAIL;?>
+                                            </td>
+											<td>
+                                            <?php 
+											if($dokumen->TIPE==1)
+											{
+												echo "Perusahaan";
+											}else if($dokumen->TIPE==2){
+												echo "Perorangan";
+											}
+											?>
                                             </td>
                                         </tr>
                                         <?php 

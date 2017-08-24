@@ -50,27 +50,63 @@
 		  $this->load->model('usermodel');
 		  $this->load->model('mastermodel');
 		  
-		  $deskripsi = strip_tags($this->input->post('deskripsi'));
-		  $satuan = strip_tags($this->input->post('satuan'));
-		  $grup = strip_tags($this->input->post('grup'));
+		  $data['kode_em'] = $this->mastermodel->kode_em();
+		  $nopeg = strip_tags($this->input->post('nopeg'));
+		  $nama = strip_tags(strtoupper($this->input->post('nama')));
+		  $status = strip_tags($this->input->post('status'));
+		  $jabatan = strip_tags($this->input->post('jabatan'));
+		  $departemen = strip_tags($this->input->post('departemen'));
+		  $tglmasuk = strip_tags($this->input->post('tglmasuk'));
+		  
+		  $id_kontak = $this->mastermodel->kode_ktk();
+		  $kontak = strip_tags(strtoupper($this->input->post('kontak')));
+		  $email = strip_tags($this->input->post('email'));
+		  $hp = strip_tags($this->input->post('hp'));
+		  $phone = strip_tags($this->input->post('phone'));
+		   
+		  $id_alamat = $this->mastermodel->kode_almt();
+		  $kodepos = strip_tags($this->input->post('kodepos'));
+		  $kecamatan = strip_tags($this->input->post('kecamatan'));
+		  $kota = strip_tags($this->input->post('kota'));
+		  $provinsi = strip_tags($this->input->post('provinsi'));
+		  $alamat = strip_tags($this->input->post('alamat'));
 		  
 		  $level = $this->session->userdata('level');
 		  $data['menu'] = $this->usermodel->get_menu_for_level($level);
 			
 		  $this->load->library('form_validation');
-		  $this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');
+		  $this->form_validation->set_rules('nama', 'nama', 'trim|required');
 		  $this->form_validation->set_error_delimiters('<span style="color:#FF0000">','</span>');	
   
 		  if($this->form_validation->run() == TRUE){				
 
-				$data = array(
-					 'DESKRIPSI' => $deskripsi,
-					 'SATUAN' => $satuan,
-					 'GRUP' => $grup
+				$data_em = array(
+					 'nopeg' => $nopeg,
+					 'nama' => $nama,
+					 'status' => $status,
+					 'jabatan' => $jabatan,
+					 'departemen' => $departemen,
+					 'tgl_masuk' => date('Y-m-d',strtotime($tglmasuk))
 				   );	
+				
+				$data_ktk = array(
+					 'kontak' => $kontak,
+					 'email' => $email,
+					 'hp' => $hp,
+					 'telpon' => $phone
+				   );
+
+				$data_almt = array(
+					 'kode_pos' => $kodepos,
+					 'kecamatan' => $kecamatan,
+					 'kota' => $kota,
+					 'provinsi' => $provinsi,
+					 'alamat' => $alamat
+				   );				
 				   
-				   
-				 $this->mastermodel->tambah_em($data);
+				 $this->mastermodel->tambah_em($data_em);
+				 $this->mastermodel->tambah_kon($data_ktk);
+				 $this->mastermodel->tambah_almt($data_almt);
 				 redirect('employee/detail_em/');
 				
 		    }
