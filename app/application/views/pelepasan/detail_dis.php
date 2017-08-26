@@ -42,66 +42,42 @@
                                             <th>Pelanggan</th>
 											<th>Tanggal Mulai</th>
                                             <th>Tanggal Selesai</th>
-                                            <th>Tanggal Pelepasan</th>
 											<th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	<?php
-											$no = 1;
 											foreach($dokumen->result()as $dokumen)
 											{
 												
 										?>
                                     	<tr>
-                                        	<td><?php echo $no;?></td>
-                                            
                                             <td>
-											<?php echo anchor('pelepasan/edit_em/'.$dokumen->id, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->emomer);?>
-                                            <span style="float:right;">
-                                            <ul style="list-style:none">
-                                                <li class="dropdown">
-                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                                        <i class="fa fa-times fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-messages">
-                                                        <li style="background:#C00;color:#FFF;min-width:400px;padding-left:10px">
-                                                        	<span>
-                                                                <div>
-                                                                    <strong>Delete</strong>
-                                                                </div>
-                                                                <div >
-                                                                <?php echo 'em : '.$dokumen->emomer;?>
-                                                                </div>
-                                                            </span>
-                                                        </li>        
-                                                        <li>
-                                                            <?php 
-															  echo anchor('pelepasan/delete_em/'.$dokumen->id,'Hapus', 
-															  array(
-																	'class' => 'btn2 btn2-warning btn2-small fleft dropdown-toggle'
-																	)
-																	);
-															?>
-                                                        </li>                                                
-                                                    </ul>
-                                                    <!-- /.dropdown-messages -->
-                                                </li>
-                                        	</ul>
-                                            </span>
-                                           
-                                            </td>
-                                            
-                                            <td>
-                                            <?php echo $dokumen->alamat;?>
+											<?php echo anchor('pelepasan/edit_dis/'.$dokumen->id_instalasi, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->id_instalasi);?>
                                             </td>
                                             <td>
-                                            <?php echo $dokumen->kontak;?>
+                                            <?php echo $dokumen->deskripsi;?>
+                                            </td>
+                                            <td>
+                                            <?php echo $dokumen->customer;?>
+                                            </td>
+											<td>
+                                            <?php echo $dokumen->tgl_mulai;?>
+                                            </td>
+											<td>
+                                            <?php echo $dokumen->tgl_selesai;?>
+                                            </td>
+											<td>
+                                            <?php 
+											if($dokumen->status == 'Disetujui1'){
+												echo 'Disetujui Instalasi';
+											}elseif($dokumen->status == 'Disetujui2'){
+												echo 'Disetujui Pelepasan';
+											}
+											?>
                                             </td>
                                         </tr>
-                                        <?php 
-										$no++;
-										
+                                        <?php
 										}
 										?>
                                     </tbody>

@@ -49,7 +49,6 @@
                                             <th>Tanggal Mulai</th>
                                             <th>Tanggal Selesai</th>
 											<th>Pelaksana</th>
-                                            <th>Penanggung Jawab</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,7 +62,7 @@
                                         	<td><?php echo $no;?></td>
                                             
                                             <td>
-											<?php echo anchor('pemeliharaan/edit_em/'.$dokumen->id, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->emomer);?>
+											<?php echo anchor('pemeliharaan/edit_mtnc/'.$dokumen->id, '<i class="fa fa-pencil-square fa-fw"></i>'.$dokumen->emomer);?>
                                             <span style="float:right;">
                                             <ul style="list-style:none">
                                                 <li class="dropdown">

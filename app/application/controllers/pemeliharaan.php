@@ -56,6 +56,7 @@
 		  
 		  $level = $this->session->userdata('level');
 		  $data['menu'] = $this->usermodel->get_menu_for_level($level);
+		  $data['kode_mtnc'] = $this->transmodel->kode_mtnc();
 			
 		  $this->load->library('form_validation');
 		  $this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');

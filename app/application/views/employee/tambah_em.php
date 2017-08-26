@@ -25,10 +25,7 @@
 							<!-- select -->
 							<div class="col-xs-2 form-group">
 							  <label>Status</label>
-							  <select class="form-control" name="status">
-								<option>Aktif</option>
-								<option>Berhenti</option>
-							  </select>
+							  <input type="text" class="form-control" name="status" value="Aktif" readonly>
 							</div>
 							<div class="col-xs-3 form-group">
 							  <label>Jabatan</label>
@@ -78,7 +75,7 @@
 						</div>
 						<div class="box-body">
 						  <div class="input-group">
-							<input type="text" class="form-control" placeholder="Nama Kontak" name="kontak" id="kontak">
+							<input type="text" class="form-control" placeholder="Nama Kontak" name="kontak" id="kontak" style="text-transform:uppercase;" >
 							<span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 						  </div>
 						  <br>

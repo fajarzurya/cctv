@@ -57,7 +57,7 @@
 		   $tipe = strip_tags($this->input->post('tipe'));
 		   
 		   $id_kontak = $this->mastermodel->kode_ktk();
-		   $kontak = strip_tags($this->input->post('kontak'));
+		   $kontak = strip_tags(strtoupper($this->input->post('kontak')));
 		   $email = strip_tags($this->input->post('email'));
 		   $hp = strip_tags($this->input->post('hp'));
 		   $phone = strip_tags($this->input->post('phone'));

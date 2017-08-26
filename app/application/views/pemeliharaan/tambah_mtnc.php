@@ -17,12 +17,15 @@
 						<!-- /.box-header -->
 						  <div class="box-body">
 							<div class="col-xs-3 form-group">
-							  <label>Nomor Instalasi</label>
+							<label>Nomor Instalasi</label>
+							<div class="input-group">
 							  <input type="text" class="form-control" name="id_instalasi" placeholder="Nomor Instalasi" readonly>
+							  <span class="input-group-addon"><i class="fa fa-plus"></i></span>
+							</div>
 							</div>
 							<div class="col-xs-3 form-group">
 							  <label>Nomor Pemeliharaan</label>
-							  <input type="text" class="form-control" name="id_pemeliharaan" placeholder="Nomor Pemeliharaan" readonly>
+							  <input type="text" class="form-control" name="id_pemeliharaan" placeholder="Nomor Pemeliharaan" readonly value="<?php echo $kode_mtnc;?>">
 							</div>
 							<div class="col-xs-6 form-group">
 							  <label>Deskripsi</label>
@@ -30,26 +33,23 @@
 							</div>
 							
 							<div class="col-xs-3 form-group">
-								<label>Pelanggan</label>
-								<div class="input-group">
-								  <input type="text" class="form-control" placeholder="Pelanggan" readonly>
-								</div>
-							</div>
-							<div class="col-xs-3 form-group">
 							  <label>Pelaksana</label>
 							  <div class="input-group">
 								  <input type="text" class="form-control" placeholder="Pelaksana">
-								  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+								  <span class="input-group-addon"><i class="fa fa-plus"></i></span>
 							  </div>
 							</div>
 							<div class="col-xs-3 form-group">
+								<label>Pelanggan</label>
+								<input type="text" class="form-control" placeholder="Pelanggan" readonly>
+							</div>
+							<div class="col-xs-2 form-group">
 							  <label>Jenis</label>
 							  <select class="form-control" disabled="disabled">
 								  <option>Sewa</option>
 							  </select>
 							</div>
-							
-							<div class="col-xs-3 form-group">
+							<div class="col-xs-4 form-group">
 							  <label>&nbsp;</label>
 								<br><br><br>
 							</div>

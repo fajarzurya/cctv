@@ -4,11 +4,11 @@
             <div class="panel-body">
                 <div class="dataTable_wrapper">
                 
-                <?php echo form_open_multipart('item/edit_item');?>
+                <?php echo form_open_multipart('pelepasan/edit_dis');?>
                 <?php
-                // foreach($dokumen->result()as $dokumen)
-											// {
-				// ?>
+                foreach($dokumen->result()as $dokumen)
+				{
+				?>
 				<section class="content">
 				  <div class="row">
 				  <!-- general form elements -->
@@ -20,56 +20,109 @@
 						  <div class="box-body">
 							<div class="col-xs-3 form-group">
 							  <label>Nomor Instalasi</label>
-							  <input type="text" class="form-control" name="id_instalasi" readonly>
+							  <input type="text" class="form-control" name="id_instalasi" value="<?php echo $dokumen->id_instalasi;?>" readonly>
 							</div>
 							<div class="col-xs-6 form-group">
 							  <label>Deskripsi</label>
-							  <input type="text" class="form-control" name="deskripsi" readonly>
+							  <input type="text" class="form-control" value="<?php echo $dokumen->deskripsi;?>" readonly>
 							</div>
 							<div class="col-xs-2 form-group">
 							  <label>Status</label>
-							  <select class="form-control" name="status">
-								  <option>Aktif</option>
-								  <option>Pending</option>
-								  <option selected="selected">Selesai</option>
-							  </select>
+							  <input type="text" class="form-control" value="Pelepasan" readonly>
 							</div>
-							
 							<div class="col-xs-1 form-group">
-							  <label>&nbsp;</label>
-								<br><br><br>
-							</div>
+								  <label>&nbsp;</label>
+									<br><br><br>
+								</div>
 							
+							<div data-toggle="collapse" data-parent="#accordion" href="#collapse2">&nbsp;</div>
 							<div class="col-xs-3 form-group">
 							  <label>Pelaksana</label>
 							  <div class="input-group">
-								  <input type="text" class="form-control" placeholder="Pelaksana" readonly>
+								  <input type="text" class="form-control" placeholder="Pelaksana" id="set2" name="pelaksana" readonly>
 								  <span class="input-group-addon"><i class="fa fa-search"></i></span>
 							  </div>
 							</div>
-							<div class="col-xs-3 form-group">
+							<div class="col-xs-4 form-group">
 								<label>Pelanggan</label>
-								<div class="input-group">
-								  <input type="text" class="form-control" readonly>
-								</div>
-							</div>
-							<div class="col-xs-3 form-group">
-							  <label>Jenis</label>
-							  <select class="form-control" name="jenis" disabled="disabled">
-								  <option selected="selected"></option>
-							  </select>
+								<input type="text" class="form-control" value="<?php echo $dokumen->id_customer;?>" readonly>
 							</div>
 							<div class="col-xs-2 form-group">
-							  <label>Drawing Lokasi</label>
-							  <input type="file" name="drawing">
+							  <label>Jenis</label>
+							  <select class="form-control" disabled="disabled">
+								  <option selected="selected"><?php echo $dokumen->jenis;?></option>
+							  </select>
 							</div>
+							<div class="col-xs-3 form-group">
+							  <label>Drawing Lokasi</label>
+							  <input type="file" name="drawing" value="<?php echo $dokumen->drawing;?>">
+							</div>
+							
+							<!------ Hide ---->
+								<div id="collapse2" class="panel-collapse collapse">
+									<div class="col-xs-12 form-group">
+										<!-- Contact -->
+										<label>&nbsp;</label>
+										<div class="row">
+											<div class="box box-warning">
+											<div class="box-header">
+											  <h3 class="box-title">Karyawan</h3>
+											  <div class="box-tools">
+												<ul class="pagination pagination-sm no-margin pull-right">
+												  <li><a href="#">&laquo;</a></li>
+												  <li><a href="#">1</a></li>
+												  <li><a href="#">&raquo;</a></li>
+												</ul>
+											  </div>
+											</div>
+											<!-- /.box-header -->
+											<div class="box-body no-padding">
+											  <table class="table">
+												<tr>
+												  <th>No.</th>
+												  <th>Nomor Karyawan</th>
+												  <th>Karyawan</th>
+												  <th>Jabatan</th>
+												  <th>Departemen</th>
+												</tr>
+												  <?php
+													$no = 1;
+													foreach($karyawan->result()as $karyawan)
+													{
+												  ?>
+												<tr>
+													<td><?php echo $no;?></td>
+													<td>
+													<?php echo "<a id='".$karyawan->nopeg."' onclick='ganti2(this)'>".$karyawan->nopeg."</a>";?>
+													</td>
+													<td>
+													<?php echo $karyawan->nama;?>
+													</td>
+													<td>
+													<?php echo $karyawan->jabatan;?>
+													</td>
+													<td>
+													<?php echo $karyawan->departemen;?>
+													</td>
+												</tr>
+												<?php 
+												$no++;
+												}
+												?>
+											  </table>
+											</div>
+											<!-- /.box-body -->
+										  </div>
+										  <!-- /.box -->
+										</div>
+									</div>
+								</div>
 							
 							<!-- Tanggal Pelepasan -->
 							  <div class="col-xs-4 form-group">
 								<label>Tanggal Pelepasan :</label>
-
 								<div class="input-group date">
-								  <input type="text" class="form-control pull-right" id="datepicker" name="tglmulai">
+								  <input type="text" class="form-control pull-right" id="datepicker" name="tgllepas">
 								  <div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								  </div>
@@ -80,9 +133,8 @@
 							  <!-- Tanggal Mulai -->
 							  <div class="col-xs-3 form-group">
 								<label>Tanggal Mulai :</label>
-
 								<div class="input-group date">
-								  <input type="text" class="form-control pull-right" name="tglmulai" readonly>
+								  <input type="text" class="form-control pull-right" value="<?php echo $dokumen->tgl_mulai;?>" readonly>
 								  <div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								  </div>
@@ -90,13 +142,11 @@
 								<!-- /.input group -->
 							  </div>
 							  <!-- /.form group -->
-							  
 							  <!-- Tanggal Selesai -->
 							  <div class="col-xs-3 form-group">
 								<label>Tanggal Selesai :</label>
-
 								<div class="input-group date">
-								  <input type="text" class="form-control pull-right" name="tglselesai" readonly>
+								  <input type="text" class="form-control pull-right" value="<?php echo $dokumen->tgl_selesai;?>" readonly>
 								  <div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								  </div>
@@ -174,8 +224,8 @@
 						</div>
 					</section>
                    <?php
-					// }
-				   // ?>
+					}
+				   ?>
                	   <?php echo form_close();?>
                 </div>
                 <!-- /.table-responsive -->

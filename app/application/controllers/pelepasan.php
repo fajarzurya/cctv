@@ -48,33 +48,41 @@
 	   public function edit_dis()
 	     {
 		  $this->load->model('usermodel');
+		  $this->load->model('mastermodel');
 		  $this->load->model('transmodel');
 		  
 		  $id = $this->uri->segment(3);
+		  $data['karyawan'] = $this->mastermodel->employee();
 		  $data['dokumen'] = $this->transmodel->pelepasan_id($id);
 		  
-		  $id = strip_tags($this->input->post('id'));
-		  $deskripsi = strip_tags($this->input->post('deskripsi'));
-		  $satuan = strip_tags($this->input->post('satuan'));
-		  $grup = strip_tags($this->input->post('grup'));
+		  $id_instalasi = strip_tags($this->input->post('id_instalasi'));
+		  $tgl_pelepasan = strip_tags($this->input->post('tgllepas'));
+		  $keterangan = strip_tags($this->input->post('keterangan'));
+		  $pelaksana = strip_tags($this->input->post('pelaksana'));
 		  
 		  $level = $this->session->userdata('level');
 		  $data['menu'] = $this->usermodel->get_menu_for_level($level);
 			
 		  $this->load->library('form_validation');
-		  $this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');
+		  $this->form_validation->set_rules('pelaksana', 'pelaksana', 'trim|required');
 		  $this->form_validation->set_error_delimiters('<span style="color:#FF0000">','</span>');	
   
 		  if($this->form_validation->run() == TRUE){				
 
-				$data = array(
-					 'DESKRIPSI' => $deskripsi,
-					 'SATUAN' => $satuan,
-					 'GRUP' => $grup
-				   );	
+				$data_ins = array(
+					 'id_instalasi' => $id_instalasi,
+					 'status' => 'Pelepasan'
+				   );
 				   
-				   
-				 $this->transmodel->edit_em($id,$data);
+				$data_lepas = array(
+					 'id_instalasi' => $id_instalasi,
+					 'tgl_pelepasan' => date('Y-m-d',strtotime($tgl_pelepasan)),
+					 'keterangan' => $keterangan,
+					 'pelaksana' => $pelaksana
+				   );
+				 
+				 $this->transmodel->edit_ins($id_instalasi,$data_ins);
+				 $this->transmodel->tambah_lepas($data_lepas);
 				 redirect('pelepasan/detail_dis/');
 				
 		    }
