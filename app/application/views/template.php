@@ -421,6 +421,80 @@
 	}
 	);
 	</script>
+	<script>
+	   function tambahKontrak() {
+		 var idf = document.getElementById("idf").value;
+		 var stre;
+		 stre = "<p id='srow" + idf + "'><input type='text' size='40' name='rincian_hobi[]' placeholder='Masukkan Hobi' /> <a href='#' style=\"color:#3399FD;\" onclick='hapusElemen(\"#srow" + idf + "\"); return false;'>Hapus</a></p>";
+		 stre = "<div class='box-body' id='srow" + idf + "'>";
+			stre = stre+"<div class='col-xs-10 input-group'>";
+				stre = stre+"<input type='text' class='form-control' placeholder='Nama Kontrak' name='kontrak[]' readonly>";
+			stre = stre+"</div><br><br>";
+			stre = stre+"<div class='col-xs-3 input-group'>";
+				stre = stre+"<input type='file' name='drawing'>";
+			stre = stre+"</div><br><br>";
+			stre = stre+"<div class='col-xs-6 input-group'>";
+				stre = stre+"<input type='text' class='form-control' placeholder='Tanggal Mulai' name='tgl_mulai[]' readonly>";
+				stre = stre+"<span class='input-group-addon'><i class='fa fa-calendar'></i></span>";
+			stre = stre+"</div>";
+			stre = stre+"<div class='col-xs-6 input-group'>";
+				stre = stre+"<input type='text' class='form-control' placeholder='Tanggal Selesai' name='tgl_selesai[]' readonly>";
+				stre = stre+"<span class='input-group-addon'><i class='fa fa-calendar'></i></span>";
+			stre = stre+"</div>";
+			stre = stre+"</div>";
+		 $("#divKontrak").append(stre);
+		 idf = (idf-1) + 2;
+		 document.getElementById("idf").value = idf;
+	   }
+	   function hapusElemen(idf) {
+		 $(idf).remove();
+	   }
+	   function tambahItem() {
+		 var itm = document.getElementById("itm").value;
+		 var stre;
+		 stre = "<p id='srow" + itm + "'><input type='text' size='40' name='rincian_hobi[]' placeholder='Masukkan Hobi' /> <a href='#' style=\"color:#3399FD;\" onclick='hapusElemen(\"#srow" + itm + "\"); return false;'>Hapus</a></p>";
+		 stre = "<div class='box-body' id='srow" + itm + "'>";
+			stre = stre+"<div class='col-xs-10 input-group'>";
+				stre = stre+"<input type='text' class='form-control' placeholder='Nama Kontrak' name='kontrak[]' readonly>";
+			stre = stre+"</div><br><br>";
+			stre = stre+"<div class='col-xs-3 input-group'>";
+				stre = stre+"<input type='file' name='drawing'>";
+			stre = stre+"</div><br><br>";
+			stre = stre+"<div class='col-xs-6 input-group'>";
+				stre = stre+"<input type='text' class='form-control' placeholder='Tanggal Mulai' name='tgl_mulai[]' readonly>";
+				stre = stre+"<span class='input-group-addon'><i class='fa fa-calendar'></i></span>";
+			stre = stre+"</div>";
+			stre = stre+"<div class='col-xs-6 input-group'>";
+				stre = stre+"<input type='text' class='form-control' placeholder='Tanggal Selesai' name='tgl_selesai[]' readonly>";
+				stre = stre+"<span class='input-group-addon'><i class='fa fa-calendar'></i></span>";
+			stre = stre+"</div>";
+			stre = stre+"</div>";
+			<div class="box-body" id="satu">
+						  <div class="col-xs-11 input-group">
+							<input type="text" class="form-control" placeholder="Nama Barang" readonly>
+							<span class="input-group-addon"><i class="fa fa-search"></i></span>
+						  </div><br><br><br>
+						  <div class="col-xs-4 input-group">
+							<input type="text" class="form-control" placeholder="Jumlah">
+						  </div>
+						  <div class="col-xs-4 input-group">
+							<input type="text" class="form-control" placeholder="Satuan" readonly>
+						  </div><br><br><br>
+						  <div class="col-xs-4 input-group">
+							<input type="text" class="form-control" placeholder="Gudang" readonly>
+						  </div>
+						  <div class="col-xs-8 input-group">
+							<input type="text" class="form-control" placeholder="Manufaktur" readonly>
+						  </div>
+						</div>
+		 $("#divItem").append(stre);
+		 itm = (itm-1) + 2;
+		 document.getElementById("itm").value = itm;
+	   }
+	   function hapusItem(itm) {
+		 $(itm).remove();
+	   }
+	</script>
 	
     
     

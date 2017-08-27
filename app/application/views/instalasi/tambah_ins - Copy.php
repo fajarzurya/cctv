@@ -1,3 +1,17 @@
+<script language="javascript">
+   function tambahHobi() {
+     var idf = document.getElementById("idf").value;
+     var stre;
+     stre="<p id='srow" + idf + "'><input type='text' size='40' name='rincian_hobi[]' placeholder='Masukkan Hobi' /> <a href='#' style=\"color:#3399FD;\" onclick='hapusElemen(\"#srow" + idf + "\"); return false;'>Hapus</a></p>";
+     $("#divHobi").append(stre);
+     idf = (idf-1) + 2;
+     document.getElementById("idf").value = idf;
+   }
+   function hapusElemen(idf) {
+     $(idf).remove();
+   }
+</script>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -242,8 +256,26 @@
 							<button type="button" class="btn btn-box-tool" id="satu_klik_plus"><i class="fa fa-plus"></i></button>
 						  </div>
 						</div>
-						<input id="itm" value="1" type="hidden" />
-						<div id="divitem"></div>
+						<div class="box-body" id="satu">
+						  <div class="col-xs-11 input-group">
+							<input type="text" class="form-control" placeholder="Nama Barang" readonly>
+							<span class="input-group-addon"><i class="fa fa-search"></i></span>
+						  </div><br><br><br>
+						  <div class="col-xs-4 input-group">
+							<input type="text" class="form-control" placeholder="Jumlah">
+						  </div>
+						  <div class="col-xs-4 input-group">
+							<input type="text" class="form-control" placeholder="Satuan" readonly>
+						  </div><br><br><br>
+						  <div class="col-xs-4 input-group">
+							<input type="text" class="form-control" placeholder="Gudang" readonly>
+						  </div>
+						  <div class="col-xs-8 input-group">
+							<input type="text" class="form-control" placeholder="Manufaktur" readonly>
+						  </div>
+						  <!-- /input-group -->
+						</div>
+						<!-- /.box-body -->
 					  </div>
 					  <!-- /.box --> 
 					</div>
@@ -255,12 +287,29 @@
 						<div class="box-header with-border">
 						  <h3 class="box-title">Kontrak</h3>
 						  <div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" onclick="tambahKontrak(); return false;"><i class="fa fa-plus"></i></button>
+							<!--<button type="button" class="btn btn-box-tool" id="minus"><i class="fa fa-minus"></i></button>
+							<button type="button" class="btn btn-box-tool" id="plus"><i class="fa fa-plus"></i></button> -->
+							<button type="button" class="btn btn-box-tool" onclick="tambahHobi(); return false;"><i class="fa fa-plus"></i></button>
 						  </div>
 						</div>
-						<!-- /.box-header -->
 						<input id="idf" value="1" type="hidden" />
-						<div id="divKontrak"></div>
+						<div id="divHobi"></div>
+						<!-- /.box-header -->
+						  <div class="box-body" id="dua">
+							<div class="col-xs-11 input-group">
+							<input type="text" class="form-control" placeholder="Nama Kontrak" readonly>
+							<span class="input-group-addon"><i class="fa fa-search"></i></span>
+						  </div><br><br><br>
+						  <div class="col-xs-6 input-group">
+							<input type="text" class="form-control" placeholder="Tanggal Mulai" readonly>
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						  </div>
+						  <div class="col-xs-6 input-group">
+							<input type="text" class="form-control" placeholder="Tanggal Selesai" readonly>
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						  </div>
+						  </div>
+						  <!-- /.box-body -->
 					  </div>
 					  <!-- /.box -->
 					</div>

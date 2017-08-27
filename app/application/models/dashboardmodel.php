@@ -9,22 +9,23 @@
 	 //-------------Item Urgent---------------
 	 public function item()//select
 	 {
-	   $item = $this->db->query('SELECT COUNT(ID_BARANG) FROM ITEM WHERE GRUP = "Utama"'); 
-	   return $item;
+	   $a = $this->db->query('SELECT * FROM ITEM WHERE GRUP = "Utama"'); 
+	   return $a;
 	 }
 	 //-------------Total Customer------------
 	 public function customer()//select
 	 {
-	   return $this->db->query("SELECT COUNT(ID_CUSTOMER) FROM CUSTOMER");
+	   $c = $this->db->query("SELECT * FROM CUSTOMER");
+	   return $c;
 	 }
 	 //-------------Instalasi Baru------------
 	 public function instalasi()
 	 {
-   	   return $this->db->query("SELECT COUNT(ID_INSTALASI) FROM INSTALASI WHERE TGL_ENTRI <= SYSDATE()");
+   	   return $this->db->query("SELECT * FROM INSTALASI WHERE TGL_ENTRI <= SYSDATE()");
 	 }
 	 //-------------Kontrak Jatuh Tempo------------
 	 public function kontrak()
 	 {
-   	   return $this->db->query("SELECT COUNT(ID_KONTRAK) FROM KONTRAK WHERE TGL_SELESAI <= SYSDATE() ");
+   	   return $this->db->query("SELECT * FROM KONTRAK WHERE TGL_SELESAI <= SYSDATE() ");
 	 }
   }

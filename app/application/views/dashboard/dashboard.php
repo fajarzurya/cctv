@@ -10,7 +10,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>0</h3>
+              <h3><?php echo $this->dashboardmodel->instalasi()->num_rows();?></h3>
               <p>Instalasi Baru </p>
             </div>
             <div class="icon">
@@ -24,8 +24,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>1</h3>
-
+              <h3><?php echo $this->dashboardmodel->item()->num_rows();?></h3>
               <p>Item Urgent </p>
             </div>
             <div class="icon">
@@ -39,8 +38,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>3</h3>
-
+              <h3><?php echo $this->dashboardmodel->customer()->num_rows();?></h3>
               <p>Total Customer </p>
             </div>
             <div class="icon">
@@ -54,8 +52,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>0</h3>
-
+              <h3><?php echo $this->dashboardmodel->kontrak()->num_rows();?></h3>
               <p>Kontrak Jatuh Tempo </p>
             </div>
             <div class="icon">
